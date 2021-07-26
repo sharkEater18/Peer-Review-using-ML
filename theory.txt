@@ -1,0 +1,371 @@
+By, sharkEater_76
+
+Exp1:
+The dataset was cleaned using the nltk module. Firstly, non alphabetic and 
+numeric characters were filtered out from the dataset. Lemmatization
+ans Stemming were performed to get rid of redunndant words from the dataset.
+Then the dataset was splitted to train and test 1D numpy 
+arrays. Initially a bunch of different machine learning models were selected
+to identify the best model(s). Before that 3 feature transforming approaches were
+performed namely tf-idf, bag-of-words and hash vectorizer. This was done to
+transform the string type abstract to numeric type based on the algorithms. Then the models
+were trained with all the 3 feature scaling methods. 
+
+Result1:
+Out of different models, SGD and Linear SVM were most prominent giving 
+an accuracy of about 92 and 91 respectively. Moreover, TF-IDF was the 
+by far best approach among the 3.
+
+Logistic Regression (CV)
+---------------------------------
+  Accuracy             0.8979
+  Precision            0.8981
+  Recall               0.8979
+  F1 Score             0.8977
+
+Logistic Regression (TF-IDF)
+---------------------------------
+  Accuracy             0.9161
+  Precision            0.9158
+  Recall               0.9161
+  F1 Score             0.9155
+
+Logistic Regression (HV)
+---------------------------------
+  Accuracy             0.8938
+  Precision            0.8936
+  Recall               0.8938
+  F1 Score             0.8933
+
+Stochastic Gradient Descent (CV)
+---------------------------------
+  Accuracy             0.8891
+  Precision            0.8899
+  Recall               0.8891
+  F1 Score             0.8892
+
+Stochastic Gradient Descent (TF-IDF)
+---------------------------------
+  Accuracy             0.9239
+  Precision            0.9235
+  Recall               0.9239
+  F1 Score             0.9234
+
+Stochastic Gradient Descent (HV)
+---------------------------------
+  Accuracy             0.9043
+  Precision            0.9043
+  Recall               0.9043
+  F1 Score             0.9038
+
+Random Forest (CV)
+---------------------------------
+  Accuracy             0.8738
+  Precision            0.8743
+  Recall               0.8738
+  F1 Score             0.8707
+
+Random Forest (TF-IDF)
+---------------------------------
+  Accuracy             0.8473
+  Precision            0.8517
+  Recall               0.8473
+  F1 Score             0.8412
+
+Random Forest (HV)
+---------------------------------
+  Accuracy             0.8555
+  Precision            0.8598
+  Recall               0.8555
+  F1 Score             0.8498
+
+Linear Support Vector Machine (CV)
+---------------------------------
+  Accuracy             0.8807
+  Precision            0.8811
+  Recall               0.8807
+  F1 Score             0.8807
+
+Linear Support Vector Machine (TF-IDF)
+---------------------------------
+  Accuracy             0.9239
+  Precision            0.9241
+  Recall               0.9239
+  F1 Score             0.9238
+
+Linear Support Vector Machine (HV)
+---------------------------------
+  Accuracy             0.9027
+  Precision            0.9026
+  Recall               0.9027
+  F1 Score             0.9024
+
+Non-Linear Support Vector Machine (CV)
+---------------------------------
+  Accuracy             0.897
+  Precision            0.8969
+  Recall               0.897
+  F1 Score             0.8967
+
+Non-Linear Support Vector Machine (TF-IDF)
+---------------------------------
+  Accuracy             0.9184
+  Precision            0.9183
+  Recall               0.9184
+  F1 Score             0.918
+
+Non-Linear Support Vector Machine (HV)
+---------------------------------
+  Accuracy             0.9009
+  Precision            0.9009
+  Recall               0.9009
+  F1 Score             0.9007
+
+XGBoost (CV)
+---------------------------------
+  Accuracy             0.897
+  Precision            0.8968
+  Recall               0.897
+  F1 Score             0.8968
+
+XGBoost (TF-IDF)
+---------------------------------
+  Accuracy             0.8875
+  Precision            0.8871
+  Recall               0.8875
+  F1 Score             0.8868
+
+XGBoost (HV)
+---------------------------------
+  Accuracy             0.8912
+  Precision            0.8911
+  Recall               0.8912
+  F1 Score             0.8911
+
+K Nearest Neighbours (CV)
+---------------------------------
+  Accuracy             0.5009
+  Precision            0.6826
+  Recall               0.5009
+  F1 Score             0.5166
+
+K Nearest Neighbours (TF-IDF)
+---------------------------------
+  Accuracy             0.8736
+  Precision            0.873
+  Recall               0.8736
+  F1 Score             0.8726
+
+K Nearest Neighbours (HV)
+---------------------------------
+  Accuracy             0.6614
+  Precision            0.684
+  Recall               0.6614
+  F1 Score             0.6627
+
+EXP2: 
+The two top models were than tuned using random search cross validation
+(RandomizedSearchCV) for hyperparameter tuning. After obtain the best parameters
+stratified cross validation was performed on the models with the optimised 
+parameters to check for overfitting. 
+
+Result2:
+Accuracies of 92.62 and 93.27 were obtained for SVM and SGD models 
+respectively. The runnign time of SGD was just over 7minutes compared to
+SVM's 40minute.
+
+SGD Best Parameters: {'loss': 'epsilon_insensitive', 'epsilon': 0.6}
+SVM Best Parameters:{'random_state': 1, 'kernel': 'linear', 'gamma': 10, 'C': 10}
+
+SGD:
+
+Model Performance metrics:
+------------------------------
+Accuracy: 0.932
+Precision: 0.9318
+Recall: 0.932
+F1 Score: 0.9318
+
+Model Classification report:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.98      0.98      0.98       934
+           1       0.93      0.92      0.93       946
+           2       0.88      0.85      0.86       647
+           3       0.94      0.96      0.95       891
+           4       0.94      0.94      0.94       615
+           5       0.92      0.92      0.92       919
+           6       0.90      0.93      0.91       648
+
+    accuracy                           0.93      5600
+   macro avg       0.93      0.93      0.93      5600
+weighted avg       0.93      0.93      0.93      5600
+
+
+Prediction Confusion Matrix:
+------------------------------
+[[919   2   0   1   7   0   5]
+ [  2 869  12   9   9  24  21]
+ [  2  19 547  24   1  33  21]
+ [  1   3  22 853   6   5   1]
+ [  3   4   5  10 580   0  13]
+ [  3  28  23   7   1 850   7]
+ [  6   6  12   1  14   8 601]]
+
+
+Model Validation Report:
+------------------------------
+Fold 1 : 0.93
+Fold 2 : 0.92
+Fold 3 : 0.92
+Fold 4 : 0.91
+Fold 5 : 0.93
+Fold 6 : 0.91
+Fold 7 : 0.93
+Fold 8 : 0.92
+Fold 9 : 0.91
+Fold 10 : 0.92
+
+Min Score: 0.9119
+Max Score: 0.928
+Mean Score: 0.9207
+
+
+
+SVM:
+
+Model Performance metrics:
+------------------------------
+Accuracy: 0.9266
+Precision: 0.9267
+Recall: 0.9266
+F1 Score: 0.9265
+
+Model Classification report:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.98      0.98      0.98       934
+           1       0.94      0.90      0.92       946
+           2       0.87      0.84      0.85       647
+           3       0.93      0.96      0.94       891
+           4       0.93      0.94      0.93       615
+           5       0.92      0.92      0.92       919
+           6       0.89      0.92      0.90       648
+
+    accuracy                           0.93      5600
+   macro avg       0.92      0.92      0.92      5600
+weighted avg       0.93      0.93      0.93      5600
+
+
+Prediction Confusion Matrix:
+------------------------------
+[[917   2   0   2   6   0   7]
+ [  2 856  13  10  12  28  25]
+ [  0  17 545  27   2  36  20]
+ [  1   3  24 852   5   6   0]
+ [  2   4   5  11 576   0  17]
+ [  3  25  25   9   0 850   7]
+ [  6   5  18   2  17   7 593]]
+
+
+Model Validation Report:
+------------------------------
+Fold 1 : 0.92
+Fold 2 : 0.93
+Fold 3 : 0.93
+Fold 4 : 0.92
+Fold 5 : 0.91
+Fold 6 : 0.91
+Fold 7 : 0.92
+Fold 8 : 0.92
+Fold 9 : 0.92
+Fold 10 : 0.92
+
+Min Score: 0.9054
+Max Score: 0.9277
+Mean Score: 0.9184
+
+
+EXP 3:
+
+The two models were than carried out through the paradigm of ensemble learning. Furthermore logistic regression was also included in estimatos. Both 
+hard voting and soft voting were carried out for the models yielding accuracy scores of 92.54 for soft voting and 92.46 hard voting.
+
+RESULTS 3:
+
+HARD VOTING:
+Model Performance metrics:
+------------------------------
+Accuracy: 0.9246
+Precision: 0.9245
+Recall: 0.9246
+F1 Score: 0.9243
+
+Model Classification report:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.98      0.98      0.98       934
+           1       0.93      0.90      0.92       946
+           2       0.88      0.82      0.85       647
+           3       0.92      0.96      0.94       891
+           4       0.93      0.94      0.93       615
+           5       0.92      0.92      0.92       919
+           6       0.89      0.92      0.90       648
+
+    accuracy                           0.92      5600
+   macro avg       0.92      0.92      0.92      5600
+weighted avg       0.92      0.92      0.92      5600
+
+
+Prediction Confusion Matrix:
+------------------------------
+[[916   2   0   1   7   0   8]
+ [  2 855  11  13  12  29  24]
+ [  1  19 531  34   2  36  24]
+ [  1   4  21 854   6   5   0]
+ [  4   4   5  12 577   0  13]
+ [  3  27  22  10   0 850   7]
+ [  8   7  14   2  16   6 595]]
+
+
+SOFT VOTING:
+
+Model Performance metrics:
+------------------------------
+Accuracy: 0.9254
+Precision: 0.9253
+Recall: 0.9254
+F1 Score: 0.9251
+
+Model Classification report:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.98      0.98      0.98       934
+           1       0.94      0.90      0.92       946
+           2       0.88      0.83      0.85       647
+           3       0.93      0.96      0.94       891
+           4       0.93      0.94      0.93       615
+           5       0.92      0.93      0.92       919
+           6       0.89      0.91      0.90       648
+
+    accuracy                           0.93      5600
+   macro avg       0.92      0.92      0.92      5600
+weighted avg       0.93      0.93      0.93      5600
+
+
+Prediction Confusion Matrix:
+------------------------------
+[[918   1   0   1   7   0   7]
+ [  4 849  13  12  12  30  26]
+ [  1  17 540  30   2  36  21]
+ [  1   3  22 855   5   5   0]
+ [  3   4   5  11 577   0  15]
+ [  3  24  23  10   1 851   7]
+ [  7   6  14   3  18   8 592]]
+
+###
+
